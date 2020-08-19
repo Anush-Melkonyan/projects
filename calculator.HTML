@@ -1,0 +1,137 @@
+<html> 
+    <head>
+    </head>
+    <body>
+        <form name="clasp"> 
+            <p>CALCULATOR</p>
+            <input type="text" id="myText" name="showResult" value = "">
+
+            <br>
+            <button type="button" name="fctr" onclick="factorial()">!</button>
+            <button type="button" name="square" onclick="sqrCube(2)">x2</button>
+            <button type="button" name="cube" onclick="sqrCube(3)">x3</button>
+            <button type="button" name="10sdegree" onclick="tenDegree()">10x</button>  
+              
+            <br>
+            <button type="button" name="frac" onclick="fraction()">1/x</button>  
+            <button type="button" name="add" value = "+" onclick="typeNumber('+')">+</button>
+            <button type="button" name="subtract" value = "-"onclick="typeNumber('-')">-</button>
+            <button type="button" name="multiply" value = "*" onclick="typeNumber('*')">*</button>
+            
+            <br>
+            <button type="button" onclick="round()">round</button>
+            <button type="button" name="clear" onclick="clean()">C</button> 
+            <button type="button" name="divide" value = "÷" onclick="typeNumber('/')">÷</button> 
+            <br>
+            
+            <button type="button" value = "7" onclick="typeNumber('7')">7</button>
+            <button type="button" value = "8" onclick="typeNumber('8')">8</button>
+            <button type="button" value = "9" onclick="typeNumber('9')">9</button> 
+            <button type="button" name="perc" onclick="percent()">%</button>  
+            <br>
+
+            <button type="button" value = "4" onclick="typeNumber('4')">4</button>
+            <button type="button" value = "5" onclick="typeNumber('5')">5</button>
+            <button type="button" value = "6" onclick="typeNumber('6')">6</button> 
+            <button type="button" name="plMin" onclick="plusMin()">+/-</button> 
+            <br>
+
+            <button type="button" value = "1" onclick="typeNumber('1')">1</button>
+            <button type="button" value = "2" onclick="typeNumber('2')">2</button>
+            <button type="button" value = "3" onclick="typeNumber('3')">3</button> 
+            <button type="button" name="mathRoot" onclick="sqrtRoot()">√</button> 
+            <br>
+
+            <button type="button" value = "0" onclick="typeNumber('0')">0</button>
+            <button type="button" name = "calculate" value = "=" onclick="equal()">=</button>
+            <button type="button" name="decimal" value = "." onclick="typeNumber('.')">.</button>
+            <button type="button" name="delete" onclick="deleteAnumb()"><=</button> 
+        
+        </form>
+        
+       <script>
+            function typeNumber(val){
+                document.forms.clasp.showResult.value += val
+            }
+
+            function equal(){
+                let eq = document.forms.clasp.showResult.value
+                if(eq){
+                    document.forms.clasp.showResult.value=eval(eq)
+                }
+                return eq
+            }
+
+            function clean () {
+                document.forms.clasp.showResult.value = ""
+            }
+
+            function sqrCube(num){
+                document.forms.clasp.showResult.value = document.forms.clasp.showResult.value**num                
+            }
+
+            function tenDegree(){     
+                document.forms.clasp.showResult.value = 10**document.forms.clasp.showResult.value
+            }
+
+            function fraction(){
+                if(document.forms.clasp.showResult.value == 0){ 
+                    alert("error")
+                }else{
+                    document.forms.clasp.showResult.value = 1 / document.forms.clasp.showResult.value
+                }
+            }
+            
+            function factorial(){
+                let n = 1;
+
+                for(i = 2; i <= document.forms.clasp.showResult.value; i++){
+                    n *= i;
+                }
+                    document.forms.clasp.showResult.value = n
+            }
+
+            function percent(){
+                equal()
+                document.forms.clasp.showResult.value = document.forms.clasp.showResult.value / 100
+            }
+
+            function plusMin(){
+                document.forms.clasp.showResult.value = -(document.forms.clasp.showResult.value)
+            }
+
+            function deleteAnumb(){
+                let strNum = document.forms.clasp.showResult.value.toString()
+                let strNumDel = strNum.substring(0, strNum.length - 1)
+                document.forms.clasp.showResult.value = Number(strNumDel)
+            }
+
+            function sqrtRoot(){
+                let error = true
+                for(let i = 1; i <= document.forms.clasp.showResult.value / 2; i++){
+                    if(i * i == document.forms.clasp.showResult.value){
+                        error = false
+                        document.forms.clasp.showResult.value = i
+                    }
+                }
+                if(error){
+                    document.forms.clasp.showResult.value = "error"
+                }
+            }
+
+            function round(){ 
+                let myString = document.forms.clasp.showResult.value 
+                let pos = myString.indexOf(".") 
+
+                if(pos != -1){
+                    let number = myString.substring(0, pos) 
+                    let numOfDot = myString.substring(pos + 1, pos + 2) 
+                        if(numOfDot > 5){ 
+                            number = Number(number) + 1 
+                        } 
+                    document.forms.clasp.showResult.value = number 
+                }
+            }
+        </script>
+    </body>     
+</html>
