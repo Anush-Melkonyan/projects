@@ -1,0 +1,30 @@
+<html> 
+<head>
+</head>
+<body>
+    <script>
+        function createTable() {
+            let body = document.getElementsByTagName('body')[0];
+            let table = document.createElement('table');
+            table.style.width = '100%';
+
+            for(i = 0; i <= 255; i++){
+                let row = document.createElement("tr") 
+                
+                for(j = 0; j <= 255; j++){
+                    let cell = document.createElement("td")
+                    cell.style.backgroundColor = `rgb(0, ${i}, ${j})`; 
+                    cell.setAttribute('title', `the index is [${i}, ${j}], \nthe color code is RGB(0, ${i}, ${j})`)               
+                    row.appendChild(cell)
+                }
+
+                table.appendChild(row)                
+            }
+
+            body.appendChild(table)
+        }
+
+        createTable();
+</script>
+</body>     
+</html>
